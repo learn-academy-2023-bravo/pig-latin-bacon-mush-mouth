@@ -1,31 +1,33 @@
-import React, { useState } from 'react'
-import './App.css'
-import butcherPigImage from './assets/butcherPig.jpeg'
+import React, { useState } from "react"
+import "./App.css"
+import butcherPigImage from "./assets/butcherPig.jpeg"
+// - Can type any word that begins with a vowel in the text input (e.g. apple)
+// - Can hit the submit button
+// - Can see the words that begin with a vowel translated to Pig Latin and rendered to the page (e.g. appleway)
 
 const App = () => {
-
   // ACTION ITEM: to make the development process easier there are some preassigned words in the input field, when you are ready for your full user experience delete the test words passed to useState and pass an empty string
-  const [userInput, setUserInput] = useState("apple through queen squeal fry fluent")
+  const [userInput, setUserInput] = useState()
+  // "apple through queen squeal fry fluent"
   const [inputTranslated, setInputTranslated] = useState("")
 
   // ACTION ITEM: the "myPigLatinCodeHere" function is where you will put your logic to translate the sentence entered by the user into Pig Latin
   const myPigLatinCodeHere = () => {
-
     // NO MODIFICATION NEEDED: the variable "arrayOfUserInput" will contain the text input from the user split into an array of words
     const arrayOfUserInput = userInput.split(" ")
     console.log("arrayOfUserInput:", arrayOfUserInput)
 
     // NO MODIFICATION NEEDED: now that we have an array of words, we can map over the array and look at each word
-    const translatedWordsArray = arrayOfUserInput.map(eachWord => {
+    const translatedWordsArray = arrayOfUserInput.map((eachWord) => {
       console.log("eachWord:", eachWord)
 
       // NO MODIFICATION NEEDED: this code will look at each word and identify the vowels
-      const vowelsArray = eachWord.split("").filter(vowel => {
+      const vowelsArray = eachWord.split("").filter((vowel) => {
         return (
-          vowel === "a" || 
-          vowel === "e" || 
-          vowel === "i" || 
-          vowel === "o" || 
+          vowel === "a" ||
+          vowel === "e" ||
+          vowel === "i" ||
+          vowel === "o" ||
           vowel === "u"
         )
       })
@@ -33,7 +35,9 @@ const App = () => {
 
       // ACTION ITEM: your Pig Latin logic goes here!
 
-    
+      if (eachWord[0] === vowelsArray[0]) {
+        return eachWord + "way"
+      }
 
       // ACTION ITEM: this return will be the output of your Pig Latin'd code
       return eachWord
