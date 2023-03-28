@@ -1,39 +1,58 @@
-import React, { useState } from 'react'
-import './App.css'
-import butcherPigImage from './assets/butcherPig.jpeg'
+import React, { useState } from "react"
+import "./App.css"
+import butcherPigImage from "./assets/butcherPig.jpeg"
+// **Story 2: In order to see English words converted to Pig Latin, as the user of the application, I need to see words that have "qu" in the first syllable translated by moving all the consonant and the "u" to the end and add "ay".**
 
+// **Branch:** qu-functionality
+
+// **Acceptance Criteria**
+
+// - Can type any word that has a "qu" in the first syllable in the text input (e.g. squeal)
+// - Can hit the submit button
+// - Can see the words that have a "qu" in the first syllable translated to Pig Latin and rendered to the page (e.g. ealsquay)
+
+// input: string gets turned into a word array
+// output: translated string into pig latin
+// make a conditional statement that uses .includes to check for "qu" it take the "qu" and concat ay to the end of the word.
 const App = () => {
-
   // ACTION ITEM: to make the development process easier there are some preassigned words in the input field, when you are ready for your full user experience delete the test words passed to useState and pass an empty string
-  const [userInput, setUserInput] = useState("apple through queen squeal fry fluent")
+  const [userInput, setUserInput] = useState(
+    "apple through queen squeal fry fluent"
+  )
   const [inputTranslated, setInputTranslated] = useState("")
 
   // ACTION ITEM: the "myPigLatinCodeHere" function is where you will put your logic to translate the sentence entered by the user into Pig Latin
   const myPigLatinCodeHere = () => {
-
     // NO MODIFICATION NEEDED: the variable "arrayOfUserInput" will contain the text input from the user split into an array of words
     const arrayOfUserInput = userInput.split(" ")
     console.log("arrayOfUserInput:", arrayOfUserInput)
 
     // NO MODIFICATION NEEDED: now that we have an array of words, we can map over the array and look at each word
-    const translatedWordsArray = arrayOfUserInput.map(eachWord => {
+    const translatedWordsArray = arrayOfUserInput.map((eachWord) => {
       console.log("eachWord:", eachWord)
 
       // NO MODIFICATION NEEDED: this code will look at each word and identify the vowels
-      const vowelsArray = eachWord.split("").filter(vowel => {
+      const vowelsArray = eachWord.split("").filter((vowel) => {
         return (
-          vowel === "a" || 
-          vowel === "e" || 
-          vowel === "i" || 
-          vowel === "o" || 
+          vowel === "a" ||
+          vowel === "e" ||
+          vowel === "i" ||
+          vowel === "o" ||
           vowel === "u"
         )
       })
-      console.log("vowelsArray:", vowelsArray)
+      // console.log("vowelsArray:", vowelsArray)
+      const firstSyllable = eachWord.slice(0, 1)
 
+      console.log(eachWord.valueOf())
       // ACTION ITEM: your Pig Latin logic goes here!
 
-    
+      if (eachWord.includes("qu")) {
+        const quIndex = eachWord.indexOf("qu")
+        const firstSyllable = eachWord.slice(0, quIndex + 2)
+        const restOfWord = eachWord.slice(quIndex + 2)
+        return restOfWord + firstSyllable + "ay"
+      }
 
       // ACTION ITEM: this return will be the output of your Pig Latin'd code
       return eachWord
